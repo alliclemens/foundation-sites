@@ -2418,11 +2418,11 @@ function HTML(runner) {
     var el;
     if (test.state === 'passed') {
       var url = self.testURL(test);
-      el = fragment('<li class="test pass %e"><h2>%e<span class="duration">%ems</span> <a href="%s" class="replay">‣</a></h2></li>', test.speed, test.title, test.duration, url);
+      el = fragment('<li class="test pass %e"><h2>%e<span class="duration">%ems</span> <a href="%s" class="replay" title="Re-run test">‣</a></h2></li>', test.speed, test.title, test.duration, url);
     } else if (test.pending) {
       el = fragment('<li class="test pass pending"><h2>%e</h2></li>', test.title);
     } else {
-      el = fragment('<li class="test fail"><h2>%e <a href="%e" class="replay">‣</a></h2></li>', test.title, self.testURL(test));
+      el = fragment('<li class="test fail"><h2>%e <a href="%e" class="replay" title="Re-run test">‣</a></h2></li>', test.title, self.testURL(test));
       var stackString; // Note: Includes leading newline
       var message = test.err.toString();
 
@@ -12030,7 +12030,7 @@ var exec = require('child_process').exec
 function which(name) {
   var paths = process.env.PATH.split(':');
   var loc;
-  
+
   for (var i = 0, len = paths.length; i < len; ++i) {
     loc = path.join(paths[i], name);
     if (exists(loc)) return loc;
